@@ -1,0 +1,25 @@
+{
+  "TableName": "ChatMessages",
+  "KeySchema": [
+    { "AttributeName": "ConnectionID", "KeyType": "HASH" }
+  ],
+  "AttributeDefinitions": [
+    { "AttributeName": "TimeStamp", "AttributeType": "N" },
+    { "AttributeName": "Message", "AttributeType": "S" }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "UserIndex",
+      "KeySchema": [{ "AttributeName": "ConnectionID", "KeyType": "HASH" }],
+      "Projection": { "ProjectionType": "ALL" },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ]
+}
